@@ -28,14 +28,4 @@ public class AlarmReceiver extends BroadcastReceiver {
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
         notificationManagerCompat.notify(123, builder.build());
     }
-
-
-    /*
-    @Override
-    public void onReceive(Context context, Intent intent) {
-
-        MediaPlayer mediaPlayer = MediaPlayer.create(context, Settings.System.DEFAULT_NOTIFICATION_URI);
-        mediaPlayer.start();
-    }
-    */
 }

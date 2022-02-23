@@ -6,7 +6,7 @@ public class ToDoModel {
     private int dueStatus;
     private int important;
     private String task;
-    private String taskSes;
+    private String taskDes;
     private String dueDate;
     private long dateTime;
     private String date;
@@ -35,19 +35,19 @@ public class ToDoModel {
         this.task = task;
     }
 
-    public String getTaskDes() {
-        return taskdes;
+    public String getTaskdes() {
+        return taskDes;
     }
 
-    public void setTaskDes(String taskDes) {
+    public void setTaskdes(String taskDes) {
         this.taskDes = taskDes;
     }
 
-    public String getDueDate() {
+    public String getDuedate() {
         return dueDate;
     }
 
-    public void setDueDate(String dueDate) {
+    public void setDuedate(String dueDate) {
         this.dueDate = dueDate;
     }
 
