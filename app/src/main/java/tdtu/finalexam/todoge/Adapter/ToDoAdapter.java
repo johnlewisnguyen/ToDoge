@@ -56,16 +56,14 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
                     if (item.getDuedate() != null) {
                         db.updateStatus(item.getId(), 1, 0);
                         cancelAlarm(item.getId());
-                    }
-                    else if (item.getDuedate() == null) {
+                    } else if (item.getDuedate() == null) {
                         db.updateStatus(item.getId(), 1, 0);
                     }
                 } else {
                     if (item.getDuedate() != null) {
                         db.updateStatus(item.getId(), 0, 1);
                         setAlarm(item.getTask(), item.getDatetime(), db.getLatestID());
-                    }
-                    else if (item.getDuedate() == null) {
+                    } else if (item.getDuedate() == null) {
                         db.updateStatus(item.getId(), 0, 0);
                     }
                 }
@@ -117,11 +115,11 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ViewHolder> {
         Bundle bundle = new Bundle();
         bundle.putInt("id", item.getId());
         bundle.putString("task", item.getTask());
-        bundle.putString("taskdes", item.getTaskdes());
-        bundle.putInt("duestatus", item.getDuestatus());
-        bundle.putString("duedate", item.getDuedate());
+        bundle.putString("taskDes", item.getTaskdes());
+        bundle.putInt("dueStatus", item.getDuestatus());
+        bundle.putString("dueDate", item.getDuedate());
         bundle.putString("date", item.getDate());
-        bundle.putLong("datetime", item.getDatetime());
+        bundle.putLong("dateTime", item.getDatetime());
         AddNewTask fragment = new AddNewTask();
         fragment.setArguments(bundle);
         fragment.show(activity.getSupportFragmentManager(), AddNewTask.TAG);

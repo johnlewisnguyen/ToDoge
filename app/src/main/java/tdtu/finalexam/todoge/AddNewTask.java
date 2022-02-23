@@ -88,9 +88,9 @@ public class AddNewTask extends BottomSheetDialogFragment {
         if(bundle != null) {
             isUpdate = true;
             String task = bundle.getString("task");
-            String taskDes = bundle.getString("taskdes");
-            int dueStatus = bundle.getInt("duestatus");
-            String dueDate = bundle.getString("duedate");
+            String taskDes = bundle.getString("taskDes");
+            int dueStatus = bundle.getInt("dueStatus");
+            String dueDate = bundle.getString("dueDate");
 
             newTaskText.setText(task);
             newTaskDes.setText(taskDes);
@@ -101,7 +101,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
                 duePicker.setEnabled(true);
             } else if (dueStatus == 0 && dueDate != null) {
                 inputDue = dueDate;
-                inputDateTime = bundle.getLong("datetime");
+                inputDateTime = bundle.getLong("dateTime");
 
                 duePicker.setText(dueDate);
                 pickerCheckBox.setChecked(false);
@@ -175,11 +175,12 @@ public class AddNewTask extends BottomSheetDialogFragment {
                 }
 
                 if (finalIsUpdate){
-                    int oldStatus = bundle.getInt("duetatus");
+                    int oldStatus = bundle.getInt("dueStatus");
                     if (dueStatus == 0) {
                         if (oldStatus == 1){
                             int id = bundle.getInt("id");
-                            db.updateTask(bundle.getInt("id"), text, textDes, dueStatus, bundle.getString("duedate") , bundle.getLong("datetime"), bundle.getString("date"));
+                            db.updateTask(bundle.getInt("id"), text, textDes, dueStatus, bundle.getString("dueDate"), 
+                                          bundle.getLong("dateTime"), bundle.getString("date"));
                             cancelAlarm(id);
                         } else {
                             db.updateTask(bundle.getInt("id"), text, textDes, dueStatus, dueDate, dateTime, date);
@@ -189,7 +190,8 @@ public class AddNewTask extends BottomSheetDialogFragment {
                             db.updateTask(bundle.getInt("id"), text, textDes, dueStatus, dueDate, dateTime, date);
                             setAlarm(text, dateTime, db.getLatestID());
                         } else if (inputDue == null) {
-                            db.updateTask(bundle.getInt("id"), text, textDes, 0, dueDate, bundle.getLong("datetime"), bundle.getString("date"));
+                            db.updateTask(bundle.getInt("id"), text, textDes, 0, dueDate, bundle.getLong("dateTime"), 
+                                          bundle.getString("date"));
                         }
                     }
                 } else{
@@ -251,7 +253,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
                     }
                 };
                 TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), timeSetListener, calendar.get(Calendar.HOUR_OF_DAY),
-                        calendar.get(Calendar.MINUTE), true);
+                                                                         alendar.get(Calendar.MINUTE), true);
                 timePickerDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         if (which == DialogInterface.BUTTON_NEGATIVE) {
@@ -264,7 +266,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
         };
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), dateSetListener, calendar.get(Calendar.DAY_OF_WEEK),
-                calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+                                                                 calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
         datePickerDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
