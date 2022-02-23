@@ -9,7 +9,6 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.NotificationChannel;
@@ -20,15 +19,12 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-
 import tdtu.finalexam.todoge.Adapter.ToDoAdapter;
 import tdtu.finalexam.todoge.Model.ToDoModel;
 import tdtu.finalexam.todoge.Utils.DatabaseHandler;
@@ -53,7 +49,6 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         db.openDatabase();
 
         taskList = new ArrayList<>();
-
         tasksRecyclerView = findViewById(R.id.tasksRecyclerView);
         tasksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         tasksAdapter = new ToDoAdapter(db, this);

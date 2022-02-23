@@ -6,7 +6,7 @@
     android:backgroundTint="#FFDB80">
 
     <ImageView
-        android:id="@+id/dogeicon"
+        android:id="@+id/dogeIcon"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_alignParentStart="true"
@@ -20,7 +20,7 @@
     <ImageView
         android:layout_width="171dp"
         android:layout_height="107dp"
-        android:layout_below="@+id/dogeicon"
+        android:layout_below="@+id/dogeIcon"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="120dp"
