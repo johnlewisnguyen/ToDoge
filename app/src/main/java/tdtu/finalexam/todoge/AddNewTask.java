@@ -1,5 +1,4 @@
 package tdtu.finalexam.todoge;
-
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
@@ -25,19 +24,15 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
-
 import tdtu.finalexam.todoge.Model.ToDoModel;
 import tdtu.finalexam.todoge.Utils.DatabaseHandler;
 
@@ -54,8 +49,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
 
     String inputDue;
     Long inputDateTime;
-    String inputdate;
-
+    String inputDate;
     int reminder;
 
     public static AddNewTask newInstance() {
@@ -93,8 +87,8 @@ public class AddNewTask extends BottomSheetDialogFragment {
             isUpdate = true;
             String task = bundle.getString("task");
             newTaskText.setText(task);
-            String taskdes = bundle.getString("taskdes");
-            newTaskDes.setText(taskdes);
+            String taskDes = bundle.getString("taskdes");
+            newTaskDes.setText(taskDes);
 
             int duestatus = bundle.getInt("duestatus");
             if (duestatus == 1) {
@@ -176,7 +170,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
                 String textdes = newTaskDes.getText().toString();
                 String duedate = inputDue;
                 Long datetime = inputDateTime;
-                String date = inputdate;
+                String date = inputDate;
                 int duestatus;
                 if (pickerCheckBox.isChecked()) {
                     duestatus = 1;
@@ -224,7 +218,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
                     else if (duestatus == 1 && datetime != null) {
                         task.setDuedate(duedate);
                         task.setDatetime(datetime);
-                        task.setDate(inputdate);
+                        task.setDate(inputDate);
                         db.insertTask(task);
                         setAlarm(text, datetime, db.getLatestID());
                     }
@@ -252,7 +246,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
                 calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
                 SimpleDateFormat inputDateFormat = new SimpleDateFormat("dd MMM");
-                inputdate = inputDateFormat.format(calendar.getTime());
+                inputDate = inputDateFormat.format(calendar.getTime());
 
                 TimePickerDialog.OnTimeSetListener timeSetListener = new TimePickerDialog.OnTimeSetListener() {
                     @Override
