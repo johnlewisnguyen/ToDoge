@@ -3,12 +3,12 @@ package tdtu.finalexam.todoge.Model;
 public class ToDoModel {
     private int id;
     private int status;
-    private int duestatus;
+    private int dueStatus;
     private int important;
     private String task;
-    private String taskdes;
-    private String duedate;
-    private long datetime;
+    private String taskDes;
+    private String dueDate;
+    private long dateTime;
     private String date;
 
     public int getId() {
@@ -36,19 +36,19 @@ public class ToDoModel {
     }
 
     public String getTaskdes() {
-        return taskdes;
+        return taskDes;
     }
 
-    public void setTaskdes(String taskdes) {
-        this.taskdes = taskdes;
+    public void setTaskdes(String taskDes) {
+        this.taskDes = taskDes;
     }
 
     public String getDuedate() {
-        return duedate;
+        return dueDate;
     }
 
-    public void setDuedate(String duedate) {
-        this.duedate = duedate;
+    public void setDuedate(String dueDate) {
+        this.dueDate = dueDate;
     }
 
     public String getDate() {
@@ -60,19 +60,19 @@ public class ToDoModel {
     }
 
     public long getDatetime() {
-        return datetime;
+        return dateTime;
     }
 
-    public void setDatetime(long datetime) {
-        this.datetime = datetime;
+    public void setDatetime(long dateTime) {
+        this.dateTime = dateTime;
     }
 
     public int getDuestatus() {
-        return duestatus;
+        return dueStatus;
     }
 
-    public void setDuestatus(int duestatus) {
-        this.duestatus = duestatus;
+    public void setDuestatus(int dueStatus) {
+        this.dueStatus = dueStatus;
     }
 
     public int getImportant() {
