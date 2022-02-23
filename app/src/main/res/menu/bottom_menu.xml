@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/allFragment"
+        android:title="All"
+        android:icon="@drawable/icon"/>
+
+    <item
+        android:id="@+id/todayFragment"
+        android:title="Today"
+        android:icon="@drawable/icon"/>
+
+    <item
+        android:id="@+id/importantFragment"
+        android:title="Important"
+        android:icon="@drawable/icon"/>
+
+    <item
+        android:id="@+id/scheduledFragment"
+        android:title="Scheduled"
+        android:icon="@drawable/icon"/>
+
+</menu>

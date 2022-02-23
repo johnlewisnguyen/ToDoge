@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@+id/allFragment">
+
+    <fragment
+        android:id="@+id/allFragment"
+        android:name="tdtu.finalexam.todoge.AllFragment"
+        android:label="fragment_all"
+        tools:layout="@layout/fragment_all" />
+    <fragment
+        android:id="@+id/todayFragment"
+        android:name="tdtu.finalexam.todoge.TodayFragment"
+        android:label="fragment_today"
+        tools:layout="@layout/fragment_today" />
+    <fragment
+        android:id="@+id/importantFragment"
+        android:name="tdtu.finalexam.todoge.ImportantFragment"
+        android:label="fragment_important"
+        tools:layout="@layout/fragment_important" />
+    <fragment
+        android:id="@+id/scheduledFragment"
+        android:name="tdtu.finalexam.todoge.ScheduledFragment"
+        android:label="fragment_scheduled"
+        tools:layout="@layout/fragment_scheduled" />
+</navigation>

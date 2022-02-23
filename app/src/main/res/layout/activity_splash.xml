@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFDB80"
+    android:backgroundTint="#FFDB80">
+
+    <ImageView
+        android:id="@+id/dogeicon"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="106dp"
+        android:layout_marginTop="232dp"
+        android:layout_marginEnd="105dp"
+        android:src="@drawable/icon" />
+
+    <ImageView
+        android:layout_width="171dp"
+        android:layout_height="107dp"
+        android:layout_below="@+id/dogeicon"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="120dp"
+        android:src="@drawable/todoge" />
+
+
+</RelativeLayout>
