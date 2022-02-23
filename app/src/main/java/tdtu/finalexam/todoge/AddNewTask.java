@@ -83,7 +83,6 @@ public class AddNewTask extends BottomSheetDialogFragment {
         final Bundle bundle = getArguments();
         db = new DatabaseHandler(getActivity());
         db.openDatabase();
-
         
         if(bundle != null) {
             isUpdate = true;

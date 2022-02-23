@@ -1,7 +1,10 @@
 package tdtu.finalexam.todoge.Model;
 
 public class ToDoModel {
-    private int id, status, duestatus, important;
+    private int id;
+    private int status;
+    private int duestatus;
+    private int important;
     private String task;
     private String taskdes;
     private String duedate;
