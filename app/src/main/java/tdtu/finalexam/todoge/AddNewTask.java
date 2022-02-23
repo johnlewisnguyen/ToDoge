@@ -81,7 +81,10 @@ public class AddNewTask extends BottomSheetDialogFragment {
         duePicker.setInputType(InputType.TYPE_NULL);
         boolean isUpdate = false;
         final Bundle bundle = getArguments();
+        db = new DatabaseHandler(getActivity());
+        db.openDatabase();
 
+        
         if(bundle != null) {
             isUpdate = true;
             String task = bundle.getString("task");
@@ -109,9 +112,6 @@ public class AddNewTask extends BottomSheetDialogFragment {
                 newTaskSaveButton.setTextColor(ContextCompat.getColor(getContext(), R.color.design_default_color_primary_dark));
             }
         }
-
-        db = new DatabaseHandler(getActivity());
-        db.openDatabase();
 
         newTaskText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -277,14 +277,14 @@ public class AddNewTask extends BottomSheetDialogFragment {
 
     }
 
-    public void setAlarm(String task, Long datetime, int latestid) {
+    public void setAlarm(String task, Long dateTime, int latestID) {
         AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(getContext(), AlarmReceiver.class);
         intent.putExtra("TASK", task);
 
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), latestid, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), latestID, intent, 0);
 
-        alarmManager.setExact(AlarmManager.RTC, datetime, pendingIntent);
+        alarmManager.setExact(AlarmManager.RTC, dateTime, pendingIntent);
     }
 
     public void cancelAlarm(int id) {
