@@ -96,9 +96,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
                 duePicker.setText(duedate);
                 pickerCheckBox.setChecked(true);
                 duePicker.setEnabled(true);
-            }
-
-            else if (dueStatus == 0 && dueDate != null) {
+            } else if (dueStatus == 0 && dueDate != null) {
                 inputDue = dueDate;
                 inputDateTime = bundle.getLong("datetime");
 
@@ -125,16 +123,14 @@ public class AddNewTask extends BottomSheetDialogFragment {
                 if(s.toString().equals("")){
                     newTaskSaveButton.setEnabled(false);
                     newTaskSaveButton.setTextColor(Color.GRAY);
-                }
-                else {
+                } else {
                     newTaskSaveButton.setEnabled(true);
                     newTaskSaveButton.setTextColor(ContextCompat.getColor(getContext(), R.color.design_default_color_primary_dark));
                 }
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
-            }
+            public void afterTextChanged(Editable s) {}
         });
 
         duePicker.setOnClickListener(new View.OnClickListener() {
@@ -150,8 +146,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
                 if(isChecked) {
                     duePicker.setEnabled(true);
                     duePicker.setHint("Pick Date and Time");
-                }
-                else{
+                } else{
                     duePicker.setEnabled(false);
                     duePicker.setHint("");
                 }
@@ -175,8 +170,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
 
                 if (pickerCheckBox.isChecked()) {
                     dueStatus = 1;
-                }
-                else {
+                } else {
                     dueStatus = 0;
                 }
 
@@ -187,22 +181,18 @@ public class AddNewTask extends BottomSheetDialogFragment {
                             int id = bundle.getInt("id");
                             db.updateTask(bundle.getInt("id"), text, textDes, dueStatus, bundle.getString("duedate") , bundle.getLong("datetime"), bundle.getString("date"));
                             cancelAlarm(id);
-                        }
-                        else {
+                        } else {
                             db.updateTask(bundle.getInt("id"), text, textDes, dueStatus, dueDate, dateTime, date);
                         }
-                    }
-                    else if (dueStatus == 1) {
+                    } else if (dueStatus == 1) {
                         if (inputDue != null) {
                             db.updateTask(bundle.getInt("id"), text, textDes, dueStatus, dueDate, dateTime, date);
                             setAlarm(text, dateTime, db.getLatestID());
-                        }
-                        else if (inputDue == null) {
+                        } else if (inputDue == null) {
                             db.updateTask(bundle.getInt("id"), text, textDes, 0, dueDate, bundle.getLong("datetime"), bundle.getString("date"));
                         }
                     }
-                }
-                else{
+                } else{
                     ToDoModel task = new ToDoModel();
                     task.setTask(text);
                     task.setTaskdes(textDes);
@@ -214,17 +204,13 @@ public class AddNewTask extends BottomSheetDialogFragment {
                         task.setDatetime(0);
                         task.setDate(null);
                         db.insertTask(task);
-                    }
-
-                    else if (dueStatus == 1 && dateTime != null) {
+                    } else if (dueStatus == 1 && dateTime != null) {
                         task.setDuedate(dueDate);
                         task.setDatetime(dateTime);
                         task.setDate(inputDate);
                         db.insertTask(task);
                         setAlarm(text, dateTime, db.getLatestID());
-                    }
-
-                    else if (dueStatus == 1 && dueDate == null) {
+                    } else if (dueStatus == 1 && dueDate == null) {
                         task.setDuestatus(0);
                         task.setDuedate(null);
                         task.setDatetime(0);
