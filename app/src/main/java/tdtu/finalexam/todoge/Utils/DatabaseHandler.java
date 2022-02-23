@@ -22,12 +22,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String TODO_TABLE = "todo";
     private static final String ID = "id";
     private static final String TASK = "task";
-    private static final String TASKDES = "taskdes";
+    private static final String TASKDES = "taskDes";
     private static final String STATUS = "status";
-    private static final String DUESTATUS = "duestatus";
+    private static final String DUESTATUS = "dueStatus";
     private static final String DUEDATE = "due";
     private static final String DATE = "date";
-    private static final String DATETIME = "datetime";
+    private static final String DATETIME = "dateTime";
     private static final String IMPORTANT = "important";
     private static final String CREATE_TODO_TABLE = "CREATE TABLE " + TODO_TABLE + "(" + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + TASK + " TEXT, " + TASKDES + " TEXT, "
             + DUESTATUS + " INTEGER, "+ DUEDATE + " TEXT, " + DATETIME + " TEXT, " + DATE + " TEXT, " + IMPORTANT + " INTEGER, " + STATUS + " INTEGER)";
