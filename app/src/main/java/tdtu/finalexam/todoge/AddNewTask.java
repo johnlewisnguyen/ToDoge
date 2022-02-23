@@ -78,33 +78,33 @@ public class AddNewTask extends BottomSheetDialogFragment {
         newTaskSaveButton = getView().findViewById(R.id.newTaskButton);
         duePicker = getView().findViewById(R.id.duePicker);
         pickerCheckBox = getView().findViewById(R.id.pickerCheckBox);
-
         duePicker.setInputType(InputType.TYPE_NULL);
-
         boolean isUpdate = false;
         final Bundle bundle = getArguments();
+
         if(bundle != null) {
             isUpdate = true;
             String task = bundle.getString("task");
-            newTaskText.setText(task);
             String taskDes = bundle.getString("taskdes");
-            newTaskDes.setText(taskDes);
+            int dueStatus = bundle.getInt("duestatus");
+            String dueDate = bundle.getString("duedate");
 
-            int duestatus = bundle.getInt("duestatus");
-            if (duestatus == 1) {
-                String duedate = bundle.getString("duedate");
+            newTaskText.setText(task);
+            newTaskDes.setText(taskDes);
+            
+            if (dueStatus == 1) {
                 duePicker.setText(duedate);
                 pickerCheckBox.setChecked(true);
                 duePicker.setEnabled(true);
             }
 
-            else if (duestatus == 0 && bundle.getString("duedate") != null) {
-                String duedate = bundle.getString("duedate");
-                duePicker.setText(duedate);
+            else if (dueStatus == 0 && dueDate != null) {
+                inputDue = dueDate;
+                inputDateTime = bundle.getLong("datetime");
+
+                duePicker.setText(dueDate);
                 pickerCheckBox.setChecked(false);
                 duePicker.setEnabled(false);
-                inputDue = duedate;
-                inputDateTime = bundle.getLong("datetime");
             }
 
             if(task.length()>0){
@@ -167,63 +167,64 @@ public class AddNewTask extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
                 String text = newTaskText.getText().toString();
-                String textdes = newTaskDes.getText().toString();
-                String duedate = inputDue;
-                Long datetime = inputDateTime;
+                String textDes = newTaskDes.getText().toString();
+                String dueDate = inputDue;
+                Long dateTime = inputDateTime;
                 String date = inputDate;
-                int duestatus;
+                int dueStatus;
+
                 if (pickerCheckBox.isChecked()) {
-                    duestatus = 1;
+                    dueStatus = 1;
                 }
                 else {
-                    duestatus = 0;
+                    dueStatus = 0;
                 }
 
                 if (finalIsUpdate){
-                    int oldstatus = bundle.getInt("duestatus");
-                    if (duestatus == 0) {
-                        if (oldstatus == 1){
+                    int oldStatus = bundle.getInt("duetatus");
+                    if (dueStatus == 0) {
+                        if (oldStatus == 1){
                             int id = bundle.getInt("id");
-                            db.updateTask(bundle.getInt("id"), text, textdes, duestatus, bundle.getString("duedate") , bundle.getLong("datetime"), bundle.getString("date"));
+                            db.updateTask(bundle.getInt("id"), text, textDes, dueStatus, bundle.getString("duedate") , bundle.getLong("datetime"), bundle.getString("date"));
                             cancelAlarm(id);
                         }
                         else {
-                            db.updateTask(bundle.getInt("id"), text, textdes, duestatus, duedate, datetime, date);
+                            db.updateTask(bundle.getInt("id"), text, textDes, dueStatus, dueDate, dateTime, date);
                         }
                     }
-                    else if (duestatus == 1) {
+                    else if (dueStatus == 1) {
                         if (inputDue != null) {
-                            db.updateTask(bundle.getInt("id"), text, textdes, duestatus, duedate, datetime, date);
-                            setAlarm(text, datetime, db.getLatestID());
+                            db.updateTask(bundle.getInt("id"), text, textDes, dueStatus, dueDate, dateTime, date);
+                            setAlarm(text, dateTime, db.getLatestID());
                         }
                         else if (inputDue == null) {
-                            db.updateTask(bundle.getInt("id"), text, textdes, 0, bundle.getString("duedate") , bundle.getLong("datetime"), bundle.getString("date"));
+                            db.updateTask(bundle.getInt("id"), text, textDes, 0, dueDate, bundle.getLong("datetime"), bundle.getString("date"));
                         }
                     }
                 }
                 else{
                     ToDoModel task = new ToDoModel();
                     task.setTask(text);
-                    task.setTaskdes(textdes);
+                    task.setTaskdes(textDes);
                     task.setStatus(0);
-                    task.setDuestatus(duestatus);
+                    task.setDuestatus(dueStatus);
 
-                    if (duestatus == 0) {
+                    if (dueStatus == 0) {
                         task.setDuedate(null);
                         task.setDatetime(0);
                         task.setDate(null);
                         db.insertTask(task);
                     }
 
-                    else if (duestatus == 1 && datetime != null) {
-                        task.setDuedate(duedate);
-                        task.setDatetime(datetime);
+                    else if (dueStatus == 1 && dateTime != null) {
+                        task.setDuedate(dueDate);
+                        task.setDatetime(dateTime);
                         task.setDate(inputDate);
                         db.insertTask(task);
-                        setAlarm(text, datetime, db.getLatestID());
+                        setAlarm(text, dateTime, db.getLatestID());
                     }
 
-                    else if (duestatus == 1 && duedate == null) {
+                    else if (dueStatus == 1 && dueDate == null) {
                         task.setDuestatus(0);
                         task.setDuedate(null);
                         task.setDatetime(0);
